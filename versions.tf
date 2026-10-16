@@ -1,15 +1,14 @@
 terraform {
-  # Minimum versions only. The root configuration that calls this module sets
-  # upper bounds. 1.9 is the first Terraform whose variable validation can refer
-  # to other variables. Raise a minimum only when the module uses something
-  # newer, say what in a comment, and treat it as a breaking change (feat!:).
-  # Never write a vX.Y.Z string in this file: release-please rewrites them.
-  required_version = ">= 1.9.0"
+  # Minimum versions only: a reusable module states what it needs and leaves
+  # upper bounds to the root module that calls it. CI tests 1.7.5 (the newest
+  # patch of the oldest allowed minor) and the latest release; 1.7 is also the
+  # first version whose test framework supports mock providers.
+  required_version = ">= 1.7.0"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 6.0"
+      version = ">= 5.0"
     }
   }
 }
