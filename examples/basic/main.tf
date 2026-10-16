@@ -1,13 +1,13 @@
-# The smallest useful call. Examples are complete root configurations: they
-# have a provider block and call the module from the working copy, so CI
-# validates the code in this repository.
+# The smallest useful call: a private repository with the module's secure
+# defaults (immutable tags, scan on push, KMS encryption, lifecycle policy).
 
 provider "aws" {
   region = var.region
 }
 
-module "example" {
-  # A real caller uses a pinned Git source instead; see README.md "Usage".
+module "ecr_repository" {
+  # A real caller uses a pinned Git source instead, for example
+  # "git::https://github.com/EG2development/terraform-aws-ecr-repository.git?ref=v1.0.0"
   source = "../.."
 
   name = var.name

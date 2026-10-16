@@ -1,11 +1,10 @@
 variable "region" {
-  description = "AWS Region to create the resources in."
+  description = "AWS Region to create the repository in."
   type        = string
-  default     = "eu-west-2"
 }
 
 variable "name" {
-  description = "Name of the resource."
+  description = "Repository name."
   type        = string
-  default     = "example"
+  default     = "example/app"
 }

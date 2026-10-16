@@ -1,17 +1,19 @@
-# Every output has a description. Output what callers need to wire other
-# resources to this module's: names, ARNs, IDs, URLs.
-
-output "name" {
-  description = "Name of the managed resource."
-  value       = var.name
+output "repository_name" {
+  description = "Name of the repository."
+  value       = aws_ecr_repository.main.name
 }
 
-output "tags" {
-  description = "Tags applied to every resource, including the generated Name tag."
-  value       = local.tags
+output "repository_arn" {
+  description = "ARN of the repository, for IAM policies that grant push or pull."
+  value       = aws_ecr_repository.main.arn
 }
 
-output "account_id" {
-  description = "AWS account the module was planned in. Placeholder: remove with the data source in main.tf."
-  value       = data.aws_caller_identity.current.account_id
+output "repository_url" {
+  description = "URL of the repository, in the form {registry}.dkr.ecr.{region}.amazonaws.com/{name}. Append :{tag} or @{digest} to address an image."
+  value       = aws_ecr_repository.main.repository_url
+}
+
+output "registry_id" {
+  description = "ID of the registry that holds the repository (the owning AWS account)."
+  value       = aws_ecr_repository.main.registry_id
 }

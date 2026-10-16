@@ -1,0 +1,78 @@
+<mxfile host="Electron" agent="generate_shared_terraform_modules.py" version="24.7.17">
+  <diagram id="page-architecture" name="architecture">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="terraform-aws-ecr-repository — architecture" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=20;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="A private container image repository: immutable tags, scanning on push, KMS encryption and a lifecycle policy that keeps the repository small." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#545B64;spacing=4;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="1354" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="&lt;b&gt;Inputs&lt;/b&gt;&lt;br&gt;&lt;b&gt;name&lt;/b&gt; — required&lt;br&gt;image_tag_mutability = &quot;IMMUTABLE&quot;&lt;br&gt;force_delete = false&lt;br&gt;scan_on_push = true&lt;br&gt;encryption_type = &quot;KMS&quot;&lt;br&gt;kms_key_arn = null&lt;br&gt;lifecycle_policy_json = null&lt;br&gt;tagged_image_prefixes = [&quot;v&quot;]&lt;br&gt;tagged_image_retention_count = 10&lt;br&gt;untagged_image_expiry_days = 7&lt;br&gt;create_repository_policy = false&lt;br&gt;repository_policy_json = null&lt;br&gt;tags = {}" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EAF3FB;strokeColor=#147EBA;dashed=0;fontSize=10;fontColor=#232F3E;align=left;verticalAlign=top;spacing=6;spacingTop=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="280" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="&lt;b&gt;Outputs&lt;/b&gt;&lt;br&gt;repository_name&lt;br&gt;repository_arn&lt;br&gt;repository_url&lt;br&gt;registry_id" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EEF6E8;strokeColor=#7AA116;dashed=0;fontSize=10;fontColor=#232F3E;align=left;verticalAlign=top;spacing=6;spacingTop=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="100" width="294" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="&lt;b&gt;IAM the module creates&lt;/b&gt;&lt;br&gt;None. Push and pull permissions belong to the caller — identity policies on its builders and runtimes, or a repository policy through create_repository_policy." style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FDF2F4;strokeColor=#DD344C;dashed=0;fontSize=10;fontColor=#232F3E;align=left;verticalAlign=top;spacing=6;spacingTop=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="202" width="294" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="&lt;b&gt;Requirements&lt;/b&gt;&lt;br&gt;Terraform ≥ 1.7.0 · hashicorp/aws ≥ 5.0&lt;br&gt;No provider block: the caller's provider sets the account, the Region and default_tags." style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#545B64;dashed=0;fontSize=10;fontColor=#232F3E;align=left;verticalAlign=top;spacing=6;spacingTop=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="308" width="294" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="Only when … — created only when the condition holds" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#879196;dashed=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=2;fontStyle=2;fontSize=10;fontColor=#232F3E;container=1;collapsible=0;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="400" width="294" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="Grey — not created by the module: the caller's, or AWS's" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F1F3F3;strokeColor=#5A6C86;dashed=0;fontSize=10;fontColor=#232F3E;align=left;verticalAlign=top;spacing=6;spacingTop=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="444" width="294" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="Region (the caller's provider)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="100" width="950" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="&lt;b&gt;Image builders&lt;/b&gt;&lt;br&gt;CI or CodeBuild — the caller grants them ecr:PutImage and the upload actions" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F1F3F3;strokeColor=#5A6C86;fontSize=11;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="370" y="190" width="240" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="&lt;b&gt;Runtimes&lt;/b&gt;&lt;br&gt;ECS, Lambda, EKS — the caller grants them ecr:BatchGetImage and ecr:GetDownloadUrlForLayer" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F1F3F3;strokeColor=#5A6C86;fontSize=11;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="370" y="410" width="240" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="&lt;b&gt;aws_ecr_repository.main&lt;/b&gt; · {name}&lt;br&gt;image_tag_mutability = IMMUTABLE&lt;br&gt;scan_on_push = true · force_delete = false&lt;br&gt;encrypted with KMS: the AWS managed key, or kms_key_arn" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecr;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingLeft=2;" vertex="1" parent="1">
+          <mxGeometry x="700" y="290" width="64" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="&lt;b&gt;aws_ecr_lifecycle_policy.main&lt;/b&gt;&lt;br&gt;keep the newest 10 images tagged v* (tagged_image_retention_count,&lt;br&gt;tagged_image_prefixes); expire untagged images after 7 days&lt;br&gt;(untagged_image_expiry_days); lifecycle_policy_json replaces both" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.policy;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingLeft=2;" vertex="1" parent="1">
+          <mxGeometry x="708" y="450" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="Only when create_repository_policy = true" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#879196;dashed=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=2;fontStyle=2;fontSize=10;fontColor=#232F3E;container=1;collapsible=0;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="570" width="580" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="&lt;b&gt;aws_ecr_repository_policy.main&lt;/b&gt;&lt;br&gt;repository_policy_json — for example, pulls from other accounts" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.permissions;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingLeft=2;" vertex="1" parent="c15">
+          <mxGeometry x="28" y="36" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="Caller's KMS key&lt;br&gt;kms_key_arn (optional)" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F1F3F3;strokeColor=#5A6C86;fontSize=11;fontColor=#232F3E;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="150" width="180" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="push vX.Y.Z" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#545B64;strokeWidth=1.2;fontSize=10;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;jettySize=auto;orthogonalLoop=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="c11" target="c13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="pull" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#545B64;strokeWidth=1.2;fontSize=10;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;jettySize=auto;orthogonalLoop=1;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="c13" target="c12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#545B64;strokeWidth=1.2;fontSize=10;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;jettySize=auto;orthogonalLoop=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c13" target="c14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" value="encrypts" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#545B64;strokeWidth=1.2;fontSize=10;fontColor=#232F3E;labelBackgroundColor=#FFFFFF;jettySize=auto;orthogonalLoop=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c17" target="c13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1170" y="262" />
+              <mxPoint x="732" y="262" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c22" value="Source: main.tf, variables.tf and outputs.tf in this repository, as of the version this diagram was drawn for. Edit architecture.drawio in draw.io and export architecture.png beside it (File › Export as › PNG)." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#545B64;spacing=4;fontSize=10;fontColor=#879196;" vertex="1" parent="1">
+          <mxGeometry x="40" y="732" width="1574" height="22" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
