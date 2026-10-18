@@ -38,7 +38,7 @@ managed key, also `kms:CreateGrant`, `kms:RetireGrant` and `kms:DescribeKey`.
 
 | | Minimum | Why |
 | --- | --- | --- |
-| Terraform | 1.7.0 | Mocked providers in the test framework |
+| Terraform | 1.16.0 | The floor shared by this family of modules |
 | `hashicorp/aws` | 5.0 | Tested with 5.0.0 and the latest 6.x |
 
 Inputs and outputs are listed in the [README](../../README.md#inputs).
