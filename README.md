@@ -60,7 +60,7 @@ consuming repository:
 
 | Name | Version |
 | ---- | ------- |
-| terraform | >= 1.7.0 |
+| terraform | >= 1.16.0 |
 | aws | >= 5.0 |
 
 ## Providers

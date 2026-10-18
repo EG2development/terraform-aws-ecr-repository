@@ -6,7 +6,7 @@ about ten minutes and costs nothing worth measuring.
 
 ## Before you start
 
-- Terraform 1.7 or later, Docker, and the AWS CLI with credentials for a sandbox
+- Terraform 1.16 or later, Docker, and the AWS CLI with credentials for a sandbox
   account that may manage ECR repositories.
 - Read access to this repository.
 
@@ -16,7 +16,7 @@ Create an empty directory with a file `main.tf`:
 
 ```hcl
 terraform {
-  required_version = ">= 1.7.0"
+  required_version = ">= 1.16.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
