@@ -59,20 +59,20 @@ consuming repository:
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | terraform | >= 1.7.0 |
 | aws | >= 5.0 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | aws | >= 5.0 |
 
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_ecr_lifecycle_policy.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
 | [aws_ecr_repository.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
 | [aws_ecr_repository_policy.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy) | resource |
@@ -80,7 +80,7 @@ consuming repository:
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | name | Name of the ECR repository. May contain a namespace, for example "team/service". Changing it replaces the repository and deletes its images. | `string` | n/a | yes |
 | create\_repository\_policy | Attach repository\_policy\_json as the repository policy. A separate flag, rather than a null check on the JSON, so the decision is known at plan time even when the policy names resources created in the same apply. | `bool` | `false` | no |
 | encryption\_type | Encryption at rest: KMS (default) or AES256. Changing it replaces the repository and deletes its images. | `string` | `"KMS"` | no |
@@ -98,7 +98,7 @@ consuming repository:
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | registry\_id | ID of the registry that holds the repository (the owning AWS account). |
 | repository\_arn | ARN of the repository, for IAM policies that grant push or pull. |
 | repository\_name | Name of the repository. |
@@ -121,7 +121,9 @@ deletes its images; see [design decisions](docs/explanation/design-decisions.md)
 
 ## Security scanning
 
-Checkov runs on every pull request. No checks are skipped.
+Checkov runs on every pull request via
+[Static Analysis](.github/workflows/workflow.yml). No AWS checks are skipped in
+[`configs/checkov.yml`](configs/checkov.yml).
 
 ## Upgrading
 
@@ -136,7 +138,8 @@ Semantic versions, tags `vMAJOR.MINOR.PATCH`, created by release-please from
 Conventional Commit pull-request titles. Patch: a fix that changes no plan. Minor: a
 new optional input, output or off-by-default resource. Major: anything that can
 change or replace an existing caller's resources, or raise a minimum version.
-Details: [the standard](https://github.com/EG2development/terraform-module-standards/blob/main/docs/standard.md).
+For the contribution and release checks, see [`CONTRIBUTING.md`](CONTRIBUTING.md)
+and [the release workflow](.github/workflows/release-please.yml).
 
 ## Contributing and ownership
 
